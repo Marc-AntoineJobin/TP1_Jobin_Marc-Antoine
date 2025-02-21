@@ -27,7 +27,7 @@ class FilmTest extends TestCase
         $response = $this->postJson('/api/films', $json);
 
         $response->assertJsonFragment($json);
-        $response->assertStatus(CREATED);
+        $response->assertStatus(201);
     }
 
     public function test_get_films(): void
