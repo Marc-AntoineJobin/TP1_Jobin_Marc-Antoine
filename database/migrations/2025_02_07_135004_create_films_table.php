@@ -24,6 +24,7 @@ return new class extends Migration
         $table->decimal('replacement_cost', 5, 2)->default(19.99);
         $table->enum('rating', ['G', 'PG', 'PG-13', 'R', 'NC-17'])->default('G');
         $table->text('special_features')->nullable()->default(null);
+        $table->string('image', 255)->nullable()->default(null);
         $table->timestamps();
     });
 }
