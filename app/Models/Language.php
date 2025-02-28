@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Language extends Model
 {
     protected $fillable = [
-        'id',
+        //'id',
         'name',
     ];
 
