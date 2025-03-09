@@ -7,7 +7,7 @@ use App\Models\Language;
 use App\Http\Resources\FilmResource;
 
 
-class LanguageFilm extends Controller
+class LanguageFilmController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'login',
     ];
-    public function Critic()
+    public function critics()
     {
         return $this->hasMany(Critic::class);
     }

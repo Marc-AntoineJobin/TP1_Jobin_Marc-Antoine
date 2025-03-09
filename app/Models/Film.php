@@ -24,6 +24,14 @@ class Film extends Model
 
     public function language()
     {
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Language::class);
+    }
+    public function critics()
+    {
+        return $this->hasMany(Critic::class);
+    }
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class);
     }
 }

@@ -1,17 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Critic; 
+use App\Models\Film;
+use App\Models\Actor; 
 use Illuminate\Http\Request;
 
-class CriticController extends Controller
+class FilmActorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        //TODO : Récupérer les acteurs d'un film
+        try {
+            $film = Film::findOrFail($id);
+            $actors = $film->actors;
+            return response()->json($actors, 200);
+        } catch (QueryException $e) {
+            abort(404, "Invalid ID");
+        } catch (Exception $e) {
+            abort(500, "Server Error");
+        }
     }
 
     /**
@@ -57,18 +67,8 @@ class CriticController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(string $id){
-
-        try{
-            $critic = Critic::findOrFail($id);
-            $critic->delete();
-            return response()->json(null, NO_CONTENT);
-        }
-        catch(QueryException $e){
-            abort(NOT_FOUND, "Invalid ID");
-        }
-        catch(Exception $e){
-            abort(SERVER_ERROR, "Server Error");
-        }
+    public function destroy(string $id)
+    {
+        //
     }
 }

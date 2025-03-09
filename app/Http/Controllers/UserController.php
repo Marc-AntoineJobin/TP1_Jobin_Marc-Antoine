@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +28,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $user = User::create($request->all());
+            return (new UserResource($user))->response()->setStatusCode(CREATED);
+        }
+        catch(QueryException $e){
+            abort(UNPROCESSABLE_ENTITY, "Invalid Data");
+        }
+        catch(Exception $e){
+            abort(SERVER_ERROR, "Server Error");
+        }
     }
 
     /**
@@ -51,7 +61,15 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+    try {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return (new UserResource($user))->response()->setStatusCode(OK);
+    } catch (QueryException $e) {
+        abort(UNPROCESSABLE_ENTITY, "Invalid Data");
+    } catch (Exception $e) {
+        abort(SERVER_ERROR, "Server Error");
+    }
     }
 
     /**

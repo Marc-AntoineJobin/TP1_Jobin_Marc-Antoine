@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Http\Resources\FilmResource;
 
-class filmController extends Controller
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -62,7 +62,42 @@ class filmController extends Controller
             abort(NOT_FOUND, "Invalid ID");
         }
         catch(Exception $e){
-            abort(SERVER_ERROR, "Internal Server Error");
+            abort(SERVER_ERROR, "Server Error");
         }
+    }
+    public function search(Request $request)
+    {
+    return "test";
+    $keyword = $request->input('keyword');
+    $rating = $request->input('rating');
+    $minLength = $request->input('minLength');
+    $maxLength = $request->input('maxLength');
+
+    try {
+        return "test";
+        $query = Film::query();
+
+        if ($keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%');
+        }
+
+        if ($rating) {
+            $query->where('rating', 'like', '%' . $rating . '%');
+        }
+
+        if ($minLength) {
+            $query->where('length', '>=', $minLength);
+        }
+
+        if ($maxLength) {
+            $query->where('length', '<=', $maxLength);
+        }
+
+        $films = $query->paginate(20);
+
+        return FilmResource::collection($films)->response()->setStatusCode(OK);
+    } catch (Exception $e) {
+        abort(SERVER_ERROR, "Server Error");
+    }
     }
 }
