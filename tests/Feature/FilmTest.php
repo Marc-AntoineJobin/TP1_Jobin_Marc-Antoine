@@ -37,7 +37,7 @@ class FilmTest extends TestCase
         $response = $this->get('/api/films');
 
         $filmsArray = json_decode($response->getContent(), true);
-        $this->assertEquals(count($filmsArray['data']), 10); // ????
+        $this->assertEquals(count($filmsArray['data']), 10);
 
         for($i = 0; $i < count($filmsArray['data']); $i++) {
             $response->assertJsonFragment([
