@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+/** * @OA\Info(title="TP1 API", version="1.0") */ 
+
 define("OK", 200);
 define("CREATED", 201);
 define("NO_CONTENT", 204);

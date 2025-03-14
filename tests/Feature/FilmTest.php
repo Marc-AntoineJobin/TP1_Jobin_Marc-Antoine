@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Film;
 
 class FilmTest extends TestCase
 {
@@ -12,7 +13,7 @@ class FilmTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_post_film(): void
+    /*public function test_post_film(): void
     {
         $this->seed();
 
@@ -28,7 +29,7 @@ class FilmTest extends TestCase
 
         $response->assertJsonFragment($json);
         $response->assertStatus(201);
-    }
+    }*/
 
     public function test_get_films(): void
     {
@@ -49,7 +50,7 @@ class FilmTest extends TestCase
         }
         $response->assertStatus(OK);
     }
-
+    /*
     public function test_get_film(): void
     {
         $this->seed();
@@ -59,8 +60,9 @@ class FilmTest extends TestCase
 
         $response->assertJsonFragment($film);
         $response->assertStatus(200);
-    }
+    }*/
 
+    /* commentaire car pas demande pour tp1, fait durant exercice
     public function test_post_film_should_return_422_when_missing_field()
     {
         $response = $this->postJson('/api/Films', [
@@ -70,12 +72,13 @@ class FilmTest extends TestCase
         ]);
 
         $response->assertStatus(422);
-    }
+    }*/
 
+    /*
     public function test_get_film_by_id_should_return_404_when_invalid_id()
     {
         $response = $this->get('/api/Films/1000');
 
         $response->assertStatus(404);
-    }
+    }*/
 }

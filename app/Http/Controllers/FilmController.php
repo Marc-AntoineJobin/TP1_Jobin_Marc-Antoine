@@ -13,13 +13,12 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //return Film::all();
-        try{
-            return FilmResource::collection(Film::paginate(FILMS_PAGINATION))->response()->setStatusCode(OK);
-        }
-        catch(Exception $e){
-            abort(SERVER_ERROR, "Server Error");
-        }
+    try {
+        $films = Film::paginate(FILMS_PAGINATION);
+        return FilmResource::collection($films)->response()->setStatusCode(200);
+    } catch (Exception $e) {
+        abort(SERVER_ERROR, "Server Error");
+    }
     }
     /**
      * Display the specified resource.
