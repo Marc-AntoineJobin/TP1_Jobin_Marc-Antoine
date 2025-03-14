@@ -29,8 +29,30 @@ class FilmCriticController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/films/{id}/average-score",
+     *     tags={"FilmCritic"},
+     *     summary="Get average score of critics for a film",
+     *     description="Get average score of critics for a film",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the film"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found"
+     *     )
+     * )
+     */
     public function avg_score($id)
-{
+    {
     try {
         $film = Film::findOrFail($id);
         $averageScore = $film->critics()->avg('score');
@@ -40,7 +62,7 @@ class FilmCriticController extends Controller
     } catch (Exception $e) {
         abort(500, "Server Error");
     }
-}
+    }
 
     
 }

@@ -24,8 +24,41 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/users",
+     *     tags={"User"},
+     *     summary="Create a new user",
+     *     description="Creates a new user",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="title",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="duration",
+     *                     type="int"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="album_id",
+     *                     type="int"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Created"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid Data"
+     *     )
+     * )
      */
+
     public function store(Request $request)
     {
         try {
@@ -56,9 +89,25 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+     /**
+ * @OA\Put(
+ *     path="/users/{id}",
+ *     summary="Updates a user",
+ *     @OA\Parameter(
+ *         description="Parameter with mutliple examples",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="string"),
+ *         @OA\Examples(example="int", value="1", summary="An int value."),
+ *         @OA\Examples(example="uuid", value="0006faf6-7a61-426c-9034-579f2cfcfa83", summary="An UUID value."),
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK"
+ *     )
+ * )
+ */
     public function update(Request $request, string $id)
     {
     try {

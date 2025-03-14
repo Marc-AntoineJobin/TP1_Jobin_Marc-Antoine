@@ -8,7 +8,26 @@ use Illuminate\Http\Request;
 class FilmActorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/films/{id}/actors",
+     *     tags={"FilmActor"},
+     *     summary="Get actors of a film",
+     *     description="Get actors of a film",
+     *      @OA\Parameter (
+     *       description=“film id",
+     *       in="path",
+     *       name="id",
+     *       required=true)
+
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found"
+     *     )
+     * )
      */
     public function index($id)
     {

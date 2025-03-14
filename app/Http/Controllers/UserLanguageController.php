@@ -18,6 +18,29 @@ class UserLanguageController extends Controller
         //
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/users/{id}/favorite-language",
+     *     tags={"UserLanguage"},
+     *     summary="Get favorite language of a user",
+     *     description="Get favorite language of a user",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the user"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found"
+     *     )
+     * )
+     */
     public function fav_language($id)
     {
         try {
@@ -40,6 +63,4 @@ class UserLanguageController extends Controller
             abort(500, "Server Error");
         }
     }
-
-    // ...existing code...
 }

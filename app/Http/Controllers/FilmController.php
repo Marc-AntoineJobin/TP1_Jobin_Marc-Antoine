@@ -9,7 +9,16 @@ use App\Http\Resources\FilmResource;
 class FilmController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/films",
+     *     tags={"Film"},
+     *     summary="Get list of films",
+     *     description="Get list of films",
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     )
+     * )
      */
     public function index()
     {
@@ -64,6 +73,30 @@ class FilmController extends Controller
             abort(SERVER_ERROR, "Server Error");
         }
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/films/search",
+     *     tags={"Film"},
+     *     summary="Search for films",
+     *     description="Search for films",
+     *     @OA\Parameter(
+     *         name="request",
+     *         in="query",
+     *         required=false,
+     *         description="parameters for search",
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="string", value="yellow", summary="keywordi in the title of the movie"),
+     *         @OA\Examples(example="int", value="7", summary="rating of the movie"),
+     *         @OA\Examples(example="int", value="10", summary="minlength of the movie"),
+     *         @OA\Examples(example="int", value="90", summary="maxlenght of the movie"),
+     *     )
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function search(Request $request)
     {
     return "test";

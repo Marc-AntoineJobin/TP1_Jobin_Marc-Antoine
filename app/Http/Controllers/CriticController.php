@@ -55,8 +55,27 @@ class CriticController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
+ * @OA\Delete(
+ *     path="/api/critics/{id}",
+ *     tags={"Critic"},
+ *     summary="Deletes a critic",
+ *     description="Deletes a critic by ID",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="critic ID"
+ *     ),
+ *     @OA\Response(
+ *         response=204,
+ *         description="OK"
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Not Found"
+ *     )
+ * )
+ */
     public function delete(string $id){
 
         try{
