@@ -10,7 +10,28 @@ use App\Http\Resources\CriticResource;
 class FilmCriticController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/films/{id}/critics",
+     *     tags={"FilmCritic"},
+     *     summary="Get critics of a film",
+     *     description="Get critics of a film",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         description="ID of the film"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found"
+     *     )
+     * )
      */
     public function index($id)
     {
