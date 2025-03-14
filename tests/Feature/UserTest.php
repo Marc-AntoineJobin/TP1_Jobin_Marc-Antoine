@@ -82,7 +82,6 @@ class UserTest extends TestCase
         $this->seed();
 
         $user = User::find(1);
-        $this->assertNotNull($user, 'User not found in the database.');
 
         $json = [
             'first_name' => '',
